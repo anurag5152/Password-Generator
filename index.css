@@ -1,50 +1,81 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #2d1e45;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    color: #e0d5ff;
 }
 
 .container {
-    background: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
     padding: 20px;
+    background: #3b2761;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.password-generator-content {
+    margin-left: 20px;
     text-align: center;
+    background-color: rgba(61, 61, 92, 0.85);
+    color: #e0e0f8;
+    border-radius: 8px;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.password-options-container {
+    border: 2px solid #bba0ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 button {
     margin: 10px;
     padding: 10px;
-    background: #007bff;
+    background: #8f77f8;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background: #0056b3;
+    background: #6b5cd7;
 }
 
 h2 {
     margin-top: 20px;
     word-wrap: break-word;
+    color: #fff4f4;
+    background-color: #543a78;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
 }
 
 .strength-container {
     margin-top: 20px;
+    text-align: left;
 }
 
 #strength-bar {
     width: 100%;
     height: 20px;
-    background-color: #e0e0e0;
+    background-color: #453965;
     border-radius: 5px;
     position: relative;
+    overflow: hidden;
+    margin-top: 5px;
 }
 
 #strength-indicator {
@@ -58,4 +89,30 @@ h2 {
 
 #strength-label {
     margin-top: 5px;
+    color: #d0c1ff;
+}
+
+#strength-indicator.weak { background-color: #ff6b6b; }
+#strength-indicator.moderate { background-color: #ffa500; }
+#strength-indicator.strong { background-color: #32cd32; }
+
+#password-options label {
+    display: flex;
+    align-items: center;
+    color: #d5c9ff;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+#password-options input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    margin-left: 10px;
+    border: 1px solid #bba0ff;
+    border-radius: 4px;
+    color: #3b2761;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
 }

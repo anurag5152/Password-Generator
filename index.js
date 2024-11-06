@@ -8,6 +8,8 @@ const includeSpecial = document.getElementById('include-special');
 const passwordLength = document.getElementById('password-length');
 const strengthIndicator = document.getElementById('strength-indicator');
 const strengthText = document.getElementById('strength-text');
+const criteriaList = document.getElementById('criteria-list');
+const passwordScore = document.getElementById('password-score');
 
 generatePasswordBtn.addEventListener('click', () => {
     const length = parseInt(passwordLength.value);
@@ -53,19 +55,28 @@ function generatePassword(length, upper, lower, number, special) {
 function evaluatePasswordStrength(password) {
     let strength = 0;
 
-    if (password.length >= 8) strength += 1; // Length
-    if (/[a-z]/.test(password)) strength += 1; // Lowercase
-    if (/[A-Z]/.test(password)) strength += 1; // Uppercase
-    if (/[0-9]/.test(password)) strength += 1; // Number
-    if (/[^a-zA-Z0-9]/.test(password)) strength += 1; // Special character
+    criteriaList.innerHTML = `
+        <li>${password.length >= 8 ? '✓' : '✕'} At least 8 characters</li>
+        <li>${/\d/.test(password) ? '✓' : '✕'} Includes a number</li>
+        <li>${/[A-Z]/.test(password) ? '✓' : '✕'} Includes uppercase letter</li>
+        <li>${/[^a-zA-Z0-9]/.test(password) ? '✓' : '✕'} Includes special character</li>
+    `;
 
-    const strengthPercentage = (strength / 5) * 100;
+    if (password.length >= 8) strength += 25; 
+    if (/[a-z]/.test(password)) strength += 25;
+    if (/[A-Z]/.test(password)) strength += 25; 
+    if (/\d/.test(password)) strength += 25; 
+    if (/[^a-zA-Z0-9]/.test(password)) strength += 25;
+
+    passwordScore.textContent = `${strength}/100`;
+
+    const strengthPercentage = (strength / 100) * 100;
     strengthIndicator.style.width = strengthPercentage + '%';
 
-    if (strength < 2) {
+    if (strength < 50) {
         strengthIndicator.style.backgroundColor = 'red';
         strengthText.textContent = 'Weak';
-    } else if (strength < 4) {
+    } else if (strength < 75) {
         strengthIndicator.style.backgroundColor = 'orange';
         strengthText.textContent = 'Moderate';
     } else {
